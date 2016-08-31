@@ -18,15 +18,15 @@ If you don't want use rnpm, do this
 ### Android
 1. Add to your settings.gradle:
 ```
-include ':RNFileTransfer', ':app'
-project(':RNFileTransfer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-file-transfer-android/android')
+include ':react-native-uploader'
+project(':react-native-uploader').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-uploader/android')
 ```
 
-2. Add to your android/build.gradle:
+2. Add to your android/app/build.gradle:
 ```
 dependencies {
   ...
-  compile project(':RNFileTransfer')
+  compile project(':react-native-uploader')
 }
 ```
 
@@ -34,12 +34,16 @@ dependencies {
 ```
 import com.burlap.filetransfer.FileTransferPackage;
 ...
-mReactInstanceManager = ReactInstanceManager.builder()
-        .setApplication(getApplication())
-        .setBundleAssetName("index.android.bundle")
-        .setJSMainModuleName("index.android")
-        .addPackage(new MainReactPackage())
-        .addPackage(new FileTransferPackage())
+private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+	....
+	@Override
+    	protected List<ReactPackage> getPackages() {
+    		return Arrays.<ReactPackage>asList(
+	          ...
+	          new FileTransferPackage()
+	      );
+    	}
+}
 ```
 
 ## Example
