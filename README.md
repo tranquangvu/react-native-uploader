@@ -3,15 +3,15 @@ A React Native module for uploading files and camera roll assets. Supports progr
 
 ## Install
 ### Use rnpm
-1. `npm install react-native-uploader --save`
+1. `npm install https://github.com/tranquangvu/react-native-uploader.git --save`
 2. `rnpm link react-native-uploader`
 
 
 If you don't want use rnpm, do this
 ### iOS
-1. `npm install react-native-uploader --save`
+1. `npm install https://github.com/tranquangvu/react-native-uploader.git --save`
 2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-3. Go to `node_modules` ➜ `react-native-uploader` ➜ `RNUploader` and add `RNUploader.xcodeproj`
+3. Go to `node_modules` ➜ `react-native-uploader` ➜ `ios` and add `RNUploader.xcodeproj`
 4. In XCode, in the project navigator, select your project. Add `libRNUploader.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 5. Run your project (`Cmd+R`)
 
@@ -30,7 +30,7 @@ dependencies {
 }
 ```
 
-3. Add to MainActivity.java
+3. Add to MainApplication.java
 ```
 import com.burlap.filetransfer.FileTransferPackage;
 ...
