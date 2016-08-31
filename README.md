@@ -35,14 +35,14 @@ dependencies {
 import com.burlap.filetransfer.FileTransferPackage;
 ...
 private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-	....
-	@Override
-    	protected List<ReactPackage> getPackages() {
-    		return Arrays.<ReactPackage>asList(
-	          ...
-	          new FileTransferPackage()
-	      );
-    	}
+  ....
+  @Override
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+      ...
+      new FileTransferPackage()
+    );
+  }
 }
 ```
 
