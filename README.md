@@ -16,13 +16,13 @@ If you don't want use rnpm, do this
 5. Run your project (`Cmd+R`)
 
 ### Android
-1. Add to your android/settings.gradle:
+[1] Add to your android/settings.gradle:
 ```
 include ':react-native-uploader'
 project(':react-native-uploader').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-uploader/android')
 ```
 
-2. Add to your android/app/build.gradle:
+[2] Add to your android/app/build.gradle:
 ```
 dependencies {
   ...
@@ -30,7 +30,7 @@ dependencies {
 }
 ```
 
-3. Add to MainApplication.java
+[3] Add to MainApplication.java
 ```
 import com.burlap.filetransfer.FileTransferPackage;
 ...
