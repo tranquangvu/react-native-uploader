@@ -1,5 +1,10 @@
 # react-native-uploader
-A React Native module for uploading files and camera roll assets. Supports progress notification.
+A React Native module for uploading files and camera roll assets in Android and iOS. Supports progress notification.
+
+## Note
+This module is a cover of [https://github.com/g6ling/react-native-uploader](https://github.com/g6ling/react-native-uploader). I cover it to make it suitable for my project. And I see it useful and share it.
+
+Thanks to @g6ling for great module.
 
 ## Install
 ### Use rnpm
@@ -9,20 +14,20 @@ A React Native module for uploading files and camera roll assets. Supports progr
 
 If you don't want use rnpm, do this
 ### iOS
-1. `npm install https://github.com/tranquangvu/react-native-uploader.git --save`
-2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-3. Go to `node_modules` ➜ `react-native-uploader` ➜ `ios` and add `RNUploader.xcodeproj`
-4. In XCode, in the project navigator, select your project. Add `libRNUploader.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-5. Run your project (`Cmd+R`)
+* `npm install https://github.com/tranquangvu/react-native-uploader.git --save`
+* In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
+* Go to `node_modules` ➜ `react-native-uploader` ➜ `ios` and add `RNUploader.xcodeproj`
+* In XCode, in the project navigator, select your project. Add `libRNUploader.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
+* Run your project (`Cmd+R`)
 
 ### Android
-[1] Add to your android/settings.gradle:
+* Add to your android/settings.gradle:
 ```
 include ':react-native-uploader'
 project(':react-native-uploader').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-uploader/android')
 ```
 
-[2] Add to your android/app/build.gradle:
+* Add to your android/app/build.gradle:
 ```
 dependencies {
   ...
@@ -30,7 +35,7 @@ dependencies {
 }
 ```
 
-[3] Add to MainApplication.java
+* Add to MainApplication.java
 ```
 import com.burlap.filetransfer.FileTransferPackage;
 ...
@@ -47,10 +52,8 @@ private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 ```
 
 ## Example
-See ./examples/UploadFromCameraRoll
-
-![Example](https://raw.githubusercontent.com/aroth/react-native-uploader/master/examples/UploadFromCameraRoll/uploader.gif)
-
+This is a simple demo for upload image. It can be run both Android and iOs.
+See it in [https://github.com/tranquangvu/react-native-uploader-demo](https://github.com/tranquangvu/react-native-uploader-demo)
 
 ## Usage
 ```javascript
