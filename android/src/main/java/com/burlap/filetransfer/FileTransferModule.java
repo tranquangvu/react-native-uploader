@@ -81,9 +81,6 @@ public class FileTransferModule extends ReactContextBaseJavaModule {
         }
       }
 
-
-
-
       if(files.size() != 0){
         for(int fileIndex=0 ; fileIndex<files.size(); fileIndex++){
           ReadableMap file = files.getMap(fileIndex);
@@ -120,35 +117,33 @@ public class FileTransferModule extends ReactContextBaseJavaModule {
           mRequestBody.addFormDataPart(name, fileName, RequestBody.create(mediaType, imageFile));
         }
       }
+      
+      MultipartBody requestBody = mRequestBody.build();
+      Request request;
 
+      if(method.equals("PUT")) {
+        request = new Request.Builder()
+              .header("Accept", "application/json")
+              .url(url)
+              .put(requestBody)
+              .build();
+      }
+      else{
+        request = new Request.Builder()
+              .header("Accept", "application/json")
+              .url(url)
+              .post(requestBody)
+              .build();
+      }   
 
+      Response response = client.newCall(request).execute();
+      if (!response.isSuccessful()) {
+          Log.d(TAG, "Unexpected code" + response);
+          completeCallback.invoke(response, null);
+          return;
+      }
 
-        MultipartBody requestBody = mRequestBody.build();
-        Request request;
-
-        if(method.equals("PUT")) {
-          request = new Request.Builder()
-                .header("Accept", "application/json")
-                .url(url)
-                .put(requestBody)
-                .build();
-        }
-        else{
-          request = new Request.Builder()
-                .header("Accept", "application/json")
-                .url(url)
-                .post(requestBody)
-                .build();
-        }   
-
-        Response response = client.newCall(request).execute();
-        if (!response.isSuccessful()) {
-            Log.d(TAG, "Unexpected code" + response);
-            completeCallback.invoke(response, null);
-            return;
-        }
-
-        completeCallback.invoke(null, response.body().string());
+      completeCallback.invoke(null, response.body().string());
     } catch(Exception e) {
       Log.d(TAG, e.toString());
     }
