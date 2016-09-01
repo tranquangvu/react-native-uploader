@@ -4,7 +4,7 @@ A React Native module for uploading files and camera roll assets in Android and 
 ## Note
 This module is a cover of [https://github.com/g6ling/react-native-uploader](https://github.com/g6ling/react-native-uploader). I cover it to make it suitable for my project. And I see it useful and share it.
 
-Thanks to @g6ling for great module.
+Thanks to [@g6ling](https://github.com/g6ling) for great module.
 
 ## Install
 ### Use rnpm
