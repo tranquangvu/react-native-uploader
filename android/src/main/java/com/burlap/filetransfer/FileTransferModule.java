@@ -139,7 +139,7 @@ public class FileTransferModule extends ReactContextBaseJavaModule {
       Response response = client.newCall(request).execute();
       if (!response.isSuccessful()) {
           Log.d(TAG, "Unexpected code" + response);
-          completeCallback.invoke(response, null);
+          completeCallback.invoke(response.body().string(), null);
           return;
       }
 
