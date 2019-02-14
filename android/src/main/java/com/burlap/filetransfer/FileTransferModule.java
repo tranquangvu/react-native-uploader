@@ -34,6 +34,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.Headers;
 
 
 public class FileTransferModule extends ReactContextBaseJavaModule {
@@ -68,7 +69,7 @@ public class FileTransferModule extends ReactContextBaseJavaModule {
       ReadableArray files = options.getArray("files");
       String url = options.getString("url");
       String method = options.getString("method");
-
+      
       if(options.hasKey("params")){
         ReadableMap data = options.getMap("params");
         ReadableMapKeySetIterator iterator = data.keySetIterator();
@@ -77,6 +78,20 @@ public class FileTransferModule extends ReactContextBaseJavaModule {
           String key = iterator.nextKey();
           if(ReadableType.String.equals(data.getType(key))) {
             mRequestBody.addFormDataPart(key, data.getString(key));
+          }
+        }
+      }
+
+      Headers.Builder requestHeaders = new Headers.Builder();
+      if (options.hasKey("headers")) {
+          ReadableMap headers = options.getMap("headers");
+          ReadableMapKeySetIterator iterator = headers.keySetIterator();
+
+          while(iterator.hasNextKey()){
+          String key = iterator.nextKey();
+          if(ReadableType.String.equals(headers.getType(key))) {
+              String value = headers.getString(key);
+              requestHeaders.add(key, value);
           }
         }
       }
@@ -123,6 +138,7 @@ public class FileTransferModule extends ReactContextBaseJavaModule {
 
       if(method.equals("PUT")) {
         request = new Request.Builder()
+              .headers(requestHeaders.build())
               .header("Accept", "application/json")
               .url(url)
               .put(requestBody)
@@ -130,6 +146,7 @@ public class FileTransferModule extends ReactContextBaseJavaModule {
       }
       else{
         request = new Request.Builder()
+              .headers(requestHeaders.build())
               .header("Accept", "application/json")
               .url(url)
               .post(requestBody)
@@ -139,7 +156,7 @@ public class FileTransferModule extends ReactContextBaseJavaModule {
       Response response = client.newCall(request).execute();
       if (!response.isSuccessful()) {
           Log.d(TAG, "Unexpected code" + response);
-          completeCallback.invoke(response, null);
+          completeCallback.invoke(response.body().string(), null);
           return;
       }
 
