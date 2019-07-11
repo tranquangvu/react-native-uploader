@@ -75,5 +75,5 @@
     "type": "git",
     "url": "git+https://github.com/aroth/react-native-uploader.git"
   },
-  "version": "0.0.10"
+  "version": "1.0.0"
 }
